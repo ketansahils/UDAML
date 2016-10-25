@@ -1,3 +1,5 @@
+from helper import Edge, MST
+
 def question1(s='',t=''):
 	text = s.split(' ') if s is not None else ['']
 	pat = t.split(' ') if t is not None else ['']
@@ -34,8 +36,6 @@ def question2(a):
 	def checker(x,y):
 		temp = [0,0]
 		while x >= 0 and y < n:
-			#print "Comparing",a[x],"and",a[y]
-			#print "temp",a[temp[0]:temp[1]+1]
 			if not a[x].isalpha():
 				x = x-1
 			elif not a[y].isalpha():
@@ -51,20 +51,36 @@ def question2(a):
 		return
 
 	for i in range(1,n):
-		#print "i:",i,"array:",a[longest[0]:longest[1]+1]
 		checker(i-1,i)
 
 	if not sum(longest) == n - 1:
-		#print "2nd loop"
 		for j in range(1,n-1):
-			#print "j:",j,"array:",a[longest[0]:longest[1]+1]
 			checker(j-1,j+1)
 	return a[longest[0]:longest[1]+1]
 
 
 	
-def question3():
-	pass
+def question3(d):
+	N = len(d)
+	lookup = {}
+	rev = [None] * N
+	edges = []
+	index = 0
+	for k in d.keys():
+		lookup[k] = index
+		rev[index] = k
+		index += 1
+
+	index = 0
+	
+	for k,v in d.iteritems():
+		for tup in v:
+			edges.append(Edge(lookup[k],lookup[tup[0]],tup[1]))
+			index += 1
+
+	obj = MST(edges,N)
+	return obj.createMST(rev)
+
 
 def question4():
 	pass
@@ -93,7 +109,35 @@ def question5():
 ########################################
 
 ############## QUESTION 2 ##############
-print question2('nurses run')
-# nurses run
-print question2('asma da m ')
-# ma da m
+# print question2('nurses run')
+# # nurses run
+# print question2('asma da m ')
+# # ma da m
+# print question2('asanokakontog otnoklol')
+# kontog otnok
+########################################
+
+############## QUESTION 3 ##############
+l = ['A','B','C','D','E','F','G','H']
+d = {}
+for item in l:
+	d[item] = []
+l2 = [('E','F',0.35),('B','C',0.36),('E','H',0.37),\
+		('A','E',0.38),('G','C',0.40),('D','G',0.52),\
+		('G','A',0.58),('G','E',0.93),('C','H',0.34),\
+		('B','F',0.32),('B','D',0.29),('F','H',0.28),\
+		('A','C',0.26),('B','H',0.19),('C','D',0.17),('A','H',0.16)]
+for item in l2:
+	d[item[0]].append((item[1],item[2]))
+	d[item[1]].append((item[0],item[2]))
+
+print question3(d)
+
+# {'A': [('H', 0.16), ('C', 0.26)], \
+# 'C': [('D', 0.17), ('A', 0.26), ('G', 0.4)], \
+# 'B': [('H', 0.19)], \
+# 'E': [('F', 0.35)], \
+# 'D': [('C', 0.17)], \
+# 'G': [('C', 0.4)], \
+# 'F': [('H', 0.28), ('E', 0.35)], \
+# 'H': [('A', 0.16), ('B', 0.19), ('F', 0.28)]}
