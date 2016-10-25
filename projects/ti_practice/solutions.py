@@ -88,36 +88,36 @@ def question4():
 def question5():
 	pass
 
-############## QUESTION 1 ##############
-# s1 = "Udacity ketaan"
-# t = "ekyt"
-# 
-# t1 = ""
-# t2 = None
-# t3 = "ana"
-# t4 = "ektanu"
-# 
-# T = [t,t1,t2,t3,t4]
-# for item in T:
-# 	print question1(s1,item)
+print "############## QUESTION 1 ##############"
+s1 = "Udacity ketaan"
+t = "ekyt"
+
+t1 = ""
+t2 = None
+t3 = "ana"
+t4 = "ektanu"
+
+T = [t,t1,t2,t3,t4]
+for item in T:
+	print question1(s1,item)
 
 # True
 # True
 # True
 # True
 # False
-########################################
-
-############## QUESTION 2 ##############
-# print question2('nurses run')
-# # nurses run
-# print question2('asma da m ')
-# # ma da m
-# print question2('asanokakontog otnoklol')
+print "########################################"
+print
+print "############## QUESTION 2 ##############"
+print question2('nurses run')
+# nurses run
+print question2('asma da m ')
+# ma da m
+print question2('asanokakontog otnoklol')
 # kontog otnok
-########################################
-
-############## QUESTION 3 ##############
+print "########################################"
+print
+print "############## QUESTION 3 ##############"
 l = ['A','B','C','D','E','F','G','H']
 d = {}
 for item in l:
@@ -131,7 +131,8 @@ for item in l2:
 	d[item[0]].append((item[1],item[2]))
 	d[item[1]].append((item[0],item[2]))
 
-print question3(d)
+from pprint import pprint
+pprint(question3(d))
 
 # {'A': [('H', 0.16), ('C', 0.26)], \
 # 'C': [('D', 0.17), ('A', 0.26), ('G', 0.4)], \
@@ -141,3 +142,4 @@ print question3(d)
 # 'G': [('C', 0.4)], \
 # 'F': [('H', 0.28), ('E', 0.35)], \
 # 'H': [('A', 0.16), ('B', 0.19), ('F', 0.28)]}
+print "########################################"
