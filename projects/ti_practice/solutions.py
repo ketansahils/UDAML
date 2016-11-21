@@ -217,19 +217,14 @@ for i,item in enumerate([5,4,5,6,7,3,1,7]):
 		last.next = newLast
 		last = newLast
 
-first = ist
-while first:
-	print first.data
-	first = first.next
-
 print "First element from last:",question5(ist,1)
 print "Second element from last:",question5(ist,2)
 print "Third element from last:",question5(ist,3)
 print "Fourth element from last:",question5(ist,4)
 print "Fifth element from last:",question5(ist,5)
-# 7
-# 1
-# 3
-# 7
-# 6
-
+# First element from last: 7
+# Second element from last: 1
+# Third element from last: 3
+# Fourth element from last: 7
+# Fifth element from last: 6
+print "########################################"
