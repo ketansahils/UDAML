@@ -1,0 +1,12 @@
+Q1: Used a simple list DS with asci value of lower case letters subtracted by 97 as the index to give constant lookup time.
+	The worst case efficiency is O(S + T).
+
+Q2:	No special data struct used except for python list. The nested method checker is run twice, to cover both cases of odd and even length palindrome. The worst case efficiency is
+	Big O of n^2.
+
+Q3: A typical implementation of Kruskal's algorithm is used. Data Structs used are Min Heap that gives a worst case lookup time of logN. The overall solution runs with an 
+	efficiency of the order V*E.
+
+Q4:	No additional data struct used, only for a helper funtion. Runs with time efficiency of the order N * logN.
+
+Q5:	A stack DS is used and the linked list is copied to that. The latest added node is then popped in time O(1) till we reach the node we wanted. Runs with an efficiency of O(N).
