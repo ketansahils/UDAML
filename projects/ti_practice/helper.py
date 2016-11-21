@@ -87,3 +87,44 @@ class QuickUnion(object):
 		l = self.root(j)
 		k = self.rootFlatten(i,l)
 		self._array[k] = l
+
+def search_helper(T, parent, smaller, larger):
+	if smaller <= parent <= larger:
+		return parent
+	if parent > larger:
+		for i, j in enumerate(T[parent]):
+			if j == 1:
+				break
+	if parent < smaller:
+		for i in range(len(T[parent])-1,-1,-1):
+			if T[parent][i] == 1:
+				break
+	parent = i
+	return search_helper(T,parent,smaller,larger)
+
+class Node(object):
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+class Stack(object):
+	def __init__(self,val=None):
+		self._first = Node(val)
+		self._size = 0 if val is None else 1
+
+	def isEmpty(self):
+		return self._first == None
+
+	def push(self,val):
+		latest = Node(val)
+		latest.next = self._first
+		self._first = latest
+		self._size += 1
+
+	def pop(self):
+		if not self.isEmpty():
+			popped = self._first
+			self._first = self._first.next
+			self._size -= 1
+			return popped
+		return

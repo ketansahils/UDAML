@@ -1,4 +1,4 @@
-from helper import Edge, MST
+from helper import Edge, MST, search_helper, Stack, Node
 
 def question1(s='',t=''):
 	text = s.split(' ') if s is not None else ['']
@@ -82,11 +82,27 @@ def question3(d):
 	return obj.createMST(rev)
 
 
-def question4():
-	pass
+def question4(T, r, n1, n2):
+	if n1 > n2:
+		smaller = n2
+		larger = n1
+	else:
+		smaller = n1
+		larger = n2
 
-def question5():
-	pass
+	return search_helper(T,r,smaller,larger)
+
+def question5(ll,m):
+	s = Stack(ll.data)
+	while ll.next:
+		s.push(ll.next.data)
+		ll = ll.next
+	k = 0
+	while k != m:
+		answer = s.pop()
+		k += 1
+	return answer.data
+
 
 print "############## QUESTION 1 ##############"
 s1 = "Udacity ketaan"
@@ -143,3 +159,77 @@ pprint(question3(d))
 # 'F': [('H', 0.28), ('E', 0.35)], \
 # 'H': [('A', 0.16), ('B', 0.19), ('F', 0.28)]}
 print "########################################"
+
+print
+print "############## QUESTION 4 ##############"
+print "Answer to Test question is", question4([[0, 1, 0, 0, 0],[0, 0, 0, 0, 0],[0, 0, 0, 0, 0],[1, 0, 0, 0, 1],[0, 0, 0, 0, 0]],3,1,4)
+# Answer to Test question is 3
+
+# Another tree that looks like:
+#        5
+#      /   \
+#     2     9
+#    / \   / \
+#    0 3   8 10
+#         /
+#        6
+#         \
+#          7
+
+tree = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \
+		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \
+		[0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1], \
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+print "Answer with two nodes 5 and 9 should be 5:",(question4(tree,5,5,9) == 5)
+print "Answer with two nodes 2 and 9 should be 5:",(question4(tree,5,2,9) == 5)
+print "Answer with two nodes 2 and 3 should be 2:",(question4(tree,5,3,2) == 2)
+print "Answer with two nodes 0 and 3 should be 2:",(question4(tree,5,3,0) == 2)
+print "Answer with two nodes 3 and 7 should be 5:",(question4(tree,5,3,7) == 5)
+print "Answer with two nodes 6 and 10 should be 9:",(question4(tree,5,6,10) == 9)
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+print "########################################"
+
+print
+print "############## QUESTION 5 ##############"
+# consider a linked list 5,4,5,6,7,3,1,7
+
+for i,item in enumerate([5,4,5,6,7,3,1,7]):
+	if i == 0:
+		ist = Node(item)
+		last = ist
+	else:
+		newLast = Node(item)
+		last.next = newLast
+		last = newLast
+
+first = ist
+while first:
+	print first.data
+	first = first.next
+
+print "First element from last:",question5(ist,1)
+print "Second element from last:",question5(ist,2)
+print "Third element from last:",question5(ist,3)
+print "Fourth element from last:",question5(ist,4)
+print "Fifth element from last:",question5(ist,5)
+# 7
+# 1
+# 3
+# 7
+# 6
+
