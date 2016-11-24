@@ -20,4 +20,5 @@ Q4:	No additional data struct used, only for a helper funtion. Runs with time ef
 		recursively till we meet case 1 or 2
 		If we reach clause 1 or two root (or parent for that iteration) will be the least common ancestor.
 
-Q5:	A stack DS is used and the linked list is copied to that. The latest added node is then popped in time O(1) till we reach the node we wanted. Runs with an efficiency of O(N).
+Q5:	The linked list is traversed to get the number of nodes. Now we know the length of list (n) and the location we want if we start backwards (m). Using n and m, we can find the 
+	location if we traverse head first (n-m+1). It uses constant space O(1) and time complexity of O(n).
