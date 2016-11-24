@@ -1,5 +1,6 @@
 Q1: Used a simple list DS with asci value of lower case letters subtracted by 97 as the index to give constant lookup time.
 	The worst case efficiency is O(S + T).
+	The Space complexity is again O(S + T).
 
 Q2:	No special data struct used except for python list. The nested method checker is run twice, to cover both cases of odd and even length palindrome. The worst case efficiency is
 	Big O of n^2.
@@ -8,5 +9,15 @@ Q3: A typical implementation of Kruskal's algorithm is used. Data Structs used a
 	efficiency of the order V*E.
 
 Q4:	No additional data struct used, only for a helper funtion. Runs with time efficiency of the order N * logN.
+	The solution works like this:
+		Since we can assume that both nodes are in the tree, and the tree itself adheres to all BST properties, there are four cases. Also, we start iterate from root moving down to either left or right node as we work out:
+			- N1 = root or N2 = root
+			- N1 < root < N2,
+			- root < N1 < N2,
+			- N1 < N2 < root
+		Third case, we choose right child of root and again check these 3 cases recursively till we meet case 1 or 2
+		Fourth case, we choose the left child of root and check these 3 cases again 
+		recursively till we meet case 1 or 2
+		If we reach clause 1 or two root (or parent for that iteration) will be the least common ancestor.
 
 Q5:	A stack DS is used and the linked list is copied to that. The latest added node is then popped in time O(1) till we reach the node we wanted. Runs with an efficiency of O(N).

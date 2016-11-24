@@ -106,25 +106,3 @@ class Node(object):
 	def __init__(self, data):
 		self.data = data
 		self.next = None
-
-class Stack(object):
-	def __init__(self,val=None):
-		self._first = Node(val)
-		self._size = 0 if val is None else 1
-
-	def isEmpty(self):
-		return self._first == None
-
-	def push(self,val):
-		latest = Node(val)
-		latest.next = self._first
-		self._first = latest
-		self._size += 1
-
-	def pop(self):
-		if not self.isEmpty():
-			popped = self._first
-			self._first = self._first.next
-			self._size -= 1
-			return popped
-		return

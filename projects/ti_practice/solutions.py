@@ -1,4 +1,4 @@
-from helper import Edge, MST, search_helper, Stack, Node
+from helper import Edge, MST, search_helper, Node
 
 def question1(s='',t=''):
 	text = s.split(' ') if s is not None else ['']
@@ -93,15 +93,18 @@ def question4(T, r, n1, n2):
 	return search_helper(T,r,smaller,larger)
 
 def question5(ll,m):
-	s = Stack(ll.data)
-	while ll.next:
-		s.push(ll.next.data)
-		ll = ll.next
-	k = 0
-	while k != m:
-		answer = s.pop()
-		k += 1
-	return answer.data
+	start = ll
+	counter = 0
+	while start:
+		counter += 1
+		start = start.next
+	location = 1 
+	ans = ll
+	while location < counter - m + 1:
+		ans = ans.next
+		location += 1
+	return ans.data
+
 
 
 print "############## QUESTION 1 ##############"
