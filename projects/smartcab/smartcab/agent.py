@@ -60,10 +60,8 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
         
-        state = (waypoint, inputs['light'], inputs['oncoming'], inputs['left'])
-        if self.learning:
-            if self.Q.get(state) is None:
-                self.createQ(state)
+        state = None
+
         return state
 
 
@@ -90,11 +88,7 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
-        if self.learning:
-            if self.Q.get(state) is None:
-                self.Q[state] = {}
-                for action in self.valid_actions:
-                    self.Q[state][action] = 0.0
+
         return
 
 
@@ -113,7 +107,6 @@ class LearningAgent(Agent):
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
-        action = random.choice(self.valid_actions)
  
         return action
 

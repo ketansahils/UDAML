@@ -46,7 +46,7 @@ class Environment(object):
         # Road network
         self.grid_size = grid_size  # (columns, rows)
         self.bounds = (1, 2, self.grid_size[0], self.grid_size[1] + 1)
-        self.block_size = 92
+        self.block_size = 100
         self.hang = 0.6
         self.intersections = OrderedDict()
         self.roads = []
