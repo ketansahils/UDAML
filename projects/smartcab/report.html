@@ -15915,6 +15915,33 @@ YII=
 <li>94 trials we required for the agent before testing started.</li>
 <li>I used an epsilon tolerance of 0.01 and an alpha of 0.9. I set the alpha to decrease linearly by 0.03 till it reaches a value of 0.2. After considerable number of trials, I would want the ensuing rewards to affect the Qvalues to lesser extent.</li>
 <li>It shows a huge improvement from F to A+.</li>
+</ul>
+<table>
+<thead><tr>
+<th></th>
+<th>Improved Learner</th>
+<th>Default Learner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bad Actions</strong></td>
+<td>'Total' curve decline is very steep. Almost zero at the end</td>
+<td>Decline not as steep and flattens out at the end</td>
+</tr>
+<tr>
+<td><strong>Reliability</strong></td>
+<td>No particular pattern. Although the value is higher for most of the trials</td>
+<td>Increase in reliability is slow, maxes out at 60%</td>
+</tr>
+<tr>
+<td><strong>Avg. Reward</strong></td>
+<td>Goes north of 0 with successive trials as accidents/violations goto near zero</td>
+<td>Highly penalizing accidents never let the score go positive</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li>For the given test set of 10, the driving agent seems to have learnt the right policy to a great extent.</li>
 <li>True, but one can be absolutely sure only if replication of the results yield consistently high safety ratings and good reliability rating.</li>
 </ul>
@@ -15953,6 +15980,7 @@ YII=
 <li>(waypoint, light, oncoming, left) # Format</li>
 <li>('right', 'green', None, 'right'), we should move right since waypoint is on that direction and there is no risk of crashing.</li>
 <li>('forward', 'green', 'forward', None), we should move forward for similar reasons as above.</li>
+<li>('forward', 'red', 'left', None), we should not move as it would cause crash.</li>
 </ul>
 </li>
 </ul>
@@ -15963,14 +15991,16 @@ YII=
      -- right : 0.00
      -- None : 0.00
      -- left : 0.15
-Ideally, the agent should go right, but the Q-table suggests moving forward.
+Ideally, the agent should go right, but the Q-table suggests moving forward since moving forward will provide the highest incentive.
 
 - ('left', 'red', 'left', 'right')
      -- forward : -18.88
      -- right : 0.72
      -- None : 0.00
      -- left : -8.06
-Here, the agent should choose not to move, but the Q-table wrongly suggests right.</code></pre>
+ Here, the agent should choose not to move, but the Q-table wrongly suggests right as it has the highest reward (Q-value). 
+</code></pre>
+<p>Typically, such wrong decisions can be related to either the agent being in initial stages of learning, or due to a randomly chosen decision.</p>
 
 </div>
 </div>
